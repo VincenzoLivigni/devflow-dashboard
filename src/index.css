@@ -1,0 +1,130 @@
+@import url(bootstrap);
+@import url(bootstrap-icons);
+
+:root {
+
+  /* Light mode */
+  --primary: #F2ECE4;
+  --secondary: #152545;
+
+  --bg: #f8f6f2;
+  --text: #152545;
+  --toggle-text: #F2ECE4;
+}
+
+/* Dark mode */
+[theme="dark"] {
+  --primary: #152545;
+  --secondary: #F2ECE4;
+
+  --bg: #0f1a33;
+  --text: #F2ECE4;
+  --toggle-text: #152545;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Layout */
+.app-layout {
+  width: 95%;
+  height: 100vh;
+  margin: 2.5%;
+  display: flex;
+}
+
+.main-area {
+  background-color: var(--primary);
+  border-radius: 0px 10px 10px 0px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background-color: var(--primary);
+  border-radius: 10px 0px 0px 10px;
+}
+
+#logo {
+  font-size: 3rem;
+}
+
+.separator {
+  width: 70%;
+  margin: 0 auto 0.5rem auto;
+  border: solid 1px var(--text)
+}
+
+.nav-link {
+  width: 70%;
+  color: var(--text);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  transform: scale(1.05);
+}
+
+.nav-link.active {
+  background-color: var(--secondary);
+  color: var(--toggle-text);
+}
+
+.sidebar i {
+  font-size: 1.5rem;
+}
+
+/* Header */
+header {
+  width: 100%;
+  height: 74px;
+  background-color: var(--secondary);
+  color: var(--toggle-text);
+  border-radius: 0px 10px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+header input {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border-color: inherit;
+}
+
+header .search {
+  background-color: var(--toggle-text);
+  color: var(--text);
+  padding: 5px 10px;
+  border-color: transparent;
+  border-radius: 5px;
+}
+
+.tema {
+  background-color: transparent;
+  border: none;
+}
+
+.bi-toggle2-on::before,
+.bi-toggle2-off::before {
+  font-size: 24px;
+  color: var(--toggle-text);
+  margin-top: 0.4rem;
+}
