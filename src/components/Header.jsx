@@ -15,12 +15,13 @@ export default function Header() {
     return (
         <>
             <header>
-                <div>
+                <div className="d-flex">
                     <input
+                        className="input me-1"
                         type="text"
                         placeholder="Cerca..."
                     />
-                    <button className="search fw-medium">Cerca</button>
+                    <button className="btn secondary fw-medium">Cerca</button>
                 </div>
 
                 <div className="d-flex align-items-center">

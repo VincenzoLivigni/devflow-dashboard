@@ -32,6 +32,8 @@ export default function Tasks() {
     const [tasks, setTasks] = useState(initialTasks)
     const [newTask, setNewTask] = useState("")
 
+    const [filter, setFilter] = useState("all")
+
     // funzione aggiungi task
     function addTask() {
         if (!newTask.trim()) return
@@ -61,32 +63,65 @@ export default function Tasks() {
         setTasks(prev => prev.filter((t) => t.id !== id))
     }
 
+    // funzione lista filtrata 
+    const filteredTasks = tasks.filter((t) => {
+        if (filter === "active") return !t.completed
+        if (filter === "completed") return t.completed
+        return true
+    })
+
     return (
         <>
             <h1>Task manager</h1>
 
-            <span>Add new task</span>
-            <input
-                type="text"
-                placeholder="add new task"
-                value={newTask}
-                onChange={(e) => setNewTask(e.target.value)}
-            />
-            <button onClick={addTask}>Add</button>
+            <section className="top">
+                <div>
+                    <span className="d-flex fw-medium">Add new task</span>
+                    <div className="d-flex">
+                        <input
+                            className="input me-1"
+                            type="text"
+                            placeholder="add new task"
+                            value={newTask}
+                            onChange={(e) => setNewTask(e.target.value)}
+                        />
+                        <button className="btn primary" onClick={addTask}>Add</button>
+                    </div>
+                </div>
 
-            <ul>
-                {
-                    tasks.map((t) => (
-                        <li key={t.id} onClick={() => toggleCompleted(t.id)}>
-                            <span className="me-2">{t.completed ? "✅" : "❌"}</span>
-                            <strong className="me-2">{t.title}</strong>
-                            <small>{t.priority}</small>
+                <div>
+                    <span className="d-flex fw-medium">Filter tasks</span>
+                    <select
+                        className="select"
+                        value={filter}
+                        onChange={(e) => setFilter(e.target.value)}>
 
-                            <button onClick={() => deleteTask(t.id)}>Delete</button>
-                        </li>
-                    ))
-                }
-            </ul>
+                        <option value="all">All</option>
+                        <option value="active">Active</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </section>
+
+            <section className="tasks-list">
+                <ul>
+                    {
+                        filteredTasks.map((t) => (
+                            <li key={t.id} className="task-item">
+                                <div className="task-left" onClick={() => toggleCompleted(t.id)}>
+                                    <span className="me-2">{t.completed ? "✅" : "❌"}</span>
+                                    <strong className="me-2">{t.title}</strong>
+                                </div>
+
+                                <div className="task-right">
+                                    <small className="me-3">{t.priority}</small>
+                                    <button className="btn secondary" onClick={() => deleteTask(t.id)}>Delete</button>
+                                </div>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </section>
         </>
     )
 }
