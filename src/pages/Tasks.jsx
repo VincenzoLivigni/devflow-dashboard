@@ -1,7 +1,9 @@
 import { useState } from "react"
-import TaskItem from "../components/Tasks/TaskItem"
+import TaskItem from "../components/tasks/TaskItem"
 import TaskList from "../components/tasks/TaskList"
 import TaskFilters from "../components/tasks/TaskFilters"
+import TaskForm from "../components/tasks/TaskForm"
+
 
 export default function Tasks() {
 
@@ -32,10 +34,31 @@ export default function Tasks() {
         }
     ]
 
+    // stati
     const [tasks, setTasks] = useState(initialTasks)
+
+    const [search, setSearch] = useState("")
+    const [statusFilter, setStatusFilter] = useState("all")
+    const [priorityFilter, setPriorityFilter] = useState("all")
+
     const [newTask, setNewTask] = useState("")
 
-    const [filter, setFilter] = useState("all")
+    // filtri
+    const filteredTasks = tasks.filter((t) => {
+        const matchSearch =
+            t.title.toLowerCase().includes(search.toLowerCase())
+
+        const matchStatusFilter =
+            statusFilter === "all" ||
+            (statusFilter === "active" && !t.completed) ||
+            (statusFilter === "completed" && t.completed)
+
+        const matchPriorityFilter =
+            priorityFilter === "all" ||
+            t.priority.includes(priorityFilter)
+
+        return matchSearch && matchStatusFilter && matchPriorityFilter
+    })
 
     // funzione aggiungi task
     function addTask() {
@@ -66,23 +89,23 @@ export default function Tasks() {
         setTasks(prev => prev.filter((t) => t.id !== id))
     }
 
-    // funzione lista filtrata 
-    const filteredTasks = tasks.filter((t) => {
-        if (filter === "active") return !t.completed
-        if (filter === "completed") return t.completed
-        return true
-    })
-
     return (
         <>
             <h1>Task manager</h1>
 
             <TaskFilters
+                search={search}
+                setSearch={setSearch}
+                statusFilter={statusFilter}
+                setStatusFilter={setStatusFilter}
+                priorityFilter={priorityFilter}
+                setPriorityFilter={setPriorityFilter}
+            />
+
+            <TaskForm
                 newTask={newTask}
                 setNewTask={setNewTask}
                 addTask={addTask}
-                filter={filter}
-                setFilter={setFilter}
             />
 
             <section className="tasks-list">

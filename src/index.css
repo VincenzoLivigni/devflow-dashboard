@@ -103,6 +103,12 @@ ul {
   border: solid 1px var(--text)
 }
 
+.separator2 {
+  width: 98%;
+  margin: 1.5rem 0;
+  border: solid 1px var(--text)
+}
+
 .nav-link {
   width: 70%;
   color: var(--text);
