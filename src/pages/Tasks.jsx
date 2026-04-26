@@ -1,4 +1,7 @@
 import { useState } from "react"
+import TaskItem from "../components/Tasks/TaskItem"
+import TaskList from "../components/tasks/TaskList"
+import TaskFilters from "../components/tasks/TaskFilters"
 
 export default function Tasks() {
 
@@ -74,53 +77,19 @@ export default function Tasks() {
         <>
             <h1>Task manager</h1>
 
-            <section className="top">
-                <div>
-                    <span className="d-flex fw-medium">Add new task</span>
-                    <div className="d-flex">
-                        <input
-                            className="input me-1"
-                            type="text"
-                            placeholder="add new task"
-                            value={newTask}
-                            onChange={(e) => setNewTask(e.target.value)}
-                        />
-                        <button className="btn primary" onClick={addTask}>Add</button>
-                    </div>
-                </div>
-
-                <div>
-                    <span className="d-flex fw-medium">Filter tasks</span>
-                    <select
-                        className="select"
-                        value={filter}
-                        onChange={(e) => setFilter(e.target.value)}>
-
-                        <option value="all">All</option>
-                        <option value="active">Active</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </div>
-            </section>
+            <TaskFilters
+                newTask={newTask}
+                setNewTask={setNewTask}
+                addTask={addTask}
+                filter={filter}
+                setFilter={setFilter}
+            />
 
             <section className="tasks-list">
-                <ul>
-                    {
-                        filteredTasks.map((t) => (
-                            <li key={t.id} className="task-item">
-                                <div className="task-left" onClick={() => toggleCompleted(t.id)}>
-                                    <span className="me-2">{t.completed ? "✅" : "❌"}</span>
-                                    <strong className="me-2">{t.title}</strong>
-                                </div>
-
-                                <div className="task-right">
-                                    <small className="me-3">{t.priority}</small>
-                                    <button className="btn secondary" onClick={() => deleteTask(t.id)}>Delete</button>
-                                </div>
-                            </li>
-                        ))
-                    }
-                </ul>
+                <TaskList
+                    tasks={filteredTasks}
+                    toggleCompleted={toggleCompleted}
+                    deleteTask={deleteTask} />
             </section>
         </>
     )
