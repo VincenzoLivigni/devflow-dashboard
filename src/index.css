@@ -2,7 +2,6 @@
 @import url(bootstrap-icons);
 
 :root {
-
   /* Light mode */
   --primary: #F2ECE4;
   --secondary: #152545;
@@ -37,12 +36,23 @@ ul {
 /* utils */
 .btn,
 .input,
-.select {
+.select,
+.input-snippet,
+.textarea-snippet {
   padding: 2px 5px;
   border-radius: 5px;
   border: 1px solid var(--text);
   color: var(--text);
   background-color: var(--bg);
+}
+
+.input-snippet,
+.textarea-snippet {
+  width: 98%;
+}
+
+.textarea-snippet {
+  min-height: 125px;
 }
 
 .btn {
@@ -69,7 +79,7 @@ ul {
 /* Layout */
 .app-layout {
   width: 95%;
-  height: 100vh;
+  min-height: 100vh;
   margin: 2.5%;
   display: flex;
 }
@@ -138,14 +148,13 @@ ul {
 /* Header */
 header {
   width: 100%;
-  height: 74px;
   background-color: var(--secondary);
   color: var(--toggle-text);
   border-radius: 0px 10px 0px 0px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 1rem;
 }
 
 .tema {
@@ -171,10 +180,11 @@ header {
 
 .task-item {
   width: 98%;
-  background-color: var(--text);
-  color: var(--toggle-text);
+  background-color: var(--bg);
+  color: var(--text);
   padding: 8px 10px;
   margin-top: 10px;
+  border: 1px solid var(--text);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
@@ -188,4 +198,25 @@ header {
   text-align: center;
   padding: 1.5rem;
   opacity: 0.75;
+}
+
+/* snippet */
+.form-snippet {
+  display: flex;
+  flex-direction: column;
+}
+
+.snippet-card {
+  width: 98%;
+  background-color: var(--primary);
+  color: var(--text);
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.snippet-card pre {
+  background-color: var(--bg);
+  padding: 8px;
+  border: 1px solid var(--text);
+  border-radius: 10px;
 }

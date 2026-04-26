@@ -7,7 +7,7 @@ export default function TaskFilters({ search, setSearch, statusFilter, setStatus
                 <div>
                     <span className="d-flex fw-medium">Search tasks</span>
                     <input
-                        className="input me-1"
+                        className="input"
                         type="text"
                         placeholder="Search..."
                         value={search}

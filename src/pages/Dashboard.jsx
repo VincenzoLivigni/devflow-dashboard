@@ -2,7 +2,7 @@ export default function Dashboard() {
 
     return (
         <>
-            <h1>Dashboard</h1>
+            <h2 className="mt-3">Dashboard</h2>
         </>
     )
 }

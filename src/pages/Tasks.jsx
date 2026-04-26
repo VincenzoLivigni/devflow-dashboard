@@ -101,7 +101,7 @@ export default function Tasks() {
 
     return (
         <>
-            <h1>Task manager</h1>
+            <h2 className="mt-3">Task manager</h2>
 
             <TaskFilters
                 search={search}
