@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import TaskItem from "../components/tasks/TaskItem"
 import TaskList from "../components/tasks/TaskList"
 import TaskFilters from "../components/tasks/TaskFilters"
@@ -34,9 +34,19 @@ export default function Tasks() {
         }
     ]
 
-    // stati
-    const [tasks, setTasks] = useState(initialTasks)
+    // localStorage
+    const [tasks, setTasks] = useState(() => {
+        const saved = localStorage.getItem("tasks")
+        return saved ? JSON.parse(saved) : initialTasks
+    })
 
+    useEffect(() => {
+        // aggiorno lo storage ad ogni cambiamento del valore
+        localStorage.setItem("tasks", JSON.stringify(tasks))
+    }, [tasks])
+
+
+    // stati
     const [search, setSearch] = useState("")
     const [statusFilter, setStatusFilter] = useState("all")
     const [priorityFilter, setPriorityFilter] = useState("all")
@@ -110,9 +120,10 @@ export default function Tasks() {
 
             <section className="tasks-list">
                 <TaskList
-                    tasks={filteredTasks}
+                    filteredTasks={filteredTasks}
                     toggleCompleted={toggleCompleted}
-                    deleteTask={deleteTask} />
+                    deleteTask={deleteTask}
+                />
             </section>
         </>
     )

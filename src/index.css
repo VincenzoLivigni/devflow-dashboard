@@ -182,3 +182,10 @@ header {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+
+.empty-state {
+  width: 98%;
+  text-align: center;
+  padding: 1.5rem;
+  opacity: 0.75;
+}
