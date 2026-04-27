@@ -157,6 +157,16 @@ header {
   padding: 1rem;
 }
 
+header a {
+  color: var(--toggle-text);
+  text-decoration: none;
+}
+
+header a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
 .tema {
   background-color: transparent;
   border: none;

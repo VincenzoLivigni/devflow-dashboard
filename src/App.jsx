@@ -1,22 +1,29 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Tasks from "./pages/Tasks"
-import Snippet from "./pages/Snippet"
 import Dashboard from "./pages/Dashboard"
+import Tasks from "./pages/Tasks"
+import AddTask from "./pages/AddTask"
+import Snippet from "./pages/Snippet"
+import AddSnippet from "./pages/AddSnippet"
 import DefaultLayout from "./layouts/DefaultLayout"
+import { GlobalProvider } from "./contexts/GlobalContext"
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/snippet" element={<Snippet />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <GlobalProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<DefaultLayout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/tasks" element={<Tasks />} />
+              <Route path="/addTask" element={<AddTask />} />
+              <Route path="/Snippet" element={<Snippet />} />
+              <Route path="/addSnippet" element={<AddSnippet />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </GlobalProvider>
     </>
   )
 }

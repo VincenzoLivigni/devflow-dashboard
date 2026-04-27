@@ -1,4 +1,23 @@
-export default function SnippetForm({ title, setTitle, code, setCode, handleSubmit }) {
+import { useContext, useState } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
+
+export default function AddSnippet() {
+
+    const { addSnippet } = useContext(GlobalContext)
+
+    const [snippetTitle, setSnippetTitle] = useState("")
+    const [code, setCode] = useState("")
+
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        if (!snippetTitle.trim() || !code.trim()) return
+
+        addSnippet(snippetTitle, code)
+
+        setSnippetTitle("")
+        setCode("")
+    }
 
     return (
         <>
@@ -9,8 +28,8 @@ export default function SnippetForm({ title, setTitle, code, setCode, handleSubm
                     className="input-snippet mb-3"
                     type="text"
                     placeholder="add title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={snippetTitle}
+                    onChange={(e) => setSnippetTitle(e.target.value)}
                 />
 
                 <label className="fw-medium mb-1">Add code</label>
@@ -22,7 +41,7 @@ export default function SnippetForm({ title, setTitle, code, setCode, handleSubm
                 />
 
                 <div>
-                    <button type="submit" className="btn primary px-2">Add</button>
+                    <button type="submit" className="btn primary">Add</button>
                 </div>
             </form>
         </>

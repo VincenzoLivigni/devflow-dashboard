@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
 
@@ -22,6 +23,11 @@ export default function Header() {
                         placeholder="Cerca..."
                     />
                     <button className="btn secondary fw-medium">Cerca</button>
+                </div>
+
+                <div>
+                    <NavLink to="/addTask" className="fw-medium me-4">Add task</NavLink>
+                    <NavLink to="/addSnippet" className="fw-medium">Add snippet</NavLink>
                 </div>
 
                 <div className="d-flex align-items-center">

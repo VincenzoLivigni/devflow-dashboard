@@ -1,58 +1,19 @@
-import { useEffect, useState } from "react"
-import TaskItem from "../components/tasks/TaskItem"
+import { useContext, useState } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
 import TaskList from "../components/tasks/TaskList"
 import TaskFilters from "../components/tasks/TaskFilters"
-import TaskForm from "../components/tasks/TaskForm"
+
 
 export default function Tasks() {
 
-    const initialTasks = [
-        {
-            id: 1,
-            title: "Fix navbar bug",
-            completed: false,
-            priority: "🟢 low"
-        },
-        {
-            id: 2,
-            title: "Fix sidebar UI",
-            completed: false,
-            priority: "🟢 low"
-        },
-        {
-            id: 3,
-            title: "Setup routing",
-            completed: false,
-            priority: "🟡 medium"
-        },
-        {
-            id: 4,
-            title: "Implement dark mode",
-            completed: false,
-            priority: "🔴 high"
-        }
-    ]
+    const { tasks, toggleCompleted, deleteTask } = useContext(GlobalContext)
 
-    // localStorage tasks
-    const [tasks, setTasks] = useState(() => {
-        const saved = localStorage.getItem("tasks")
-        return saved ? JSON.parse(saved) : initialTasks
-    })
-
-    useEffect(() => {
-        // aggiorno lo storage ad ogni cambiamento del valore
-        localStorage.setItem("tasks", JSON.stringify(tasks))
-    }, [tasks])
-
-
-    // stati
+    // stati task
     const [search, setSearch] = useState("")
     const [statusFilter, setStatusFilter] = useState("all")
     const [priorityFilter, setPriorityFilter] = useState("all")
 
-    const [newTask, setNewTask] = useState("")
-
-    // filtri
+    // filtri task
     const filteredTasks = tasks.filter((t) => {
         const matchSearch =
             t.title.toLowerCase().includes(search.toLowerCase())
@@ -64,39 +25,10 @@ export default function Tasks() {
 
         const matchPriorityFilter =
             priorityFilter === "all" ||
-            t.priority.includes(priorityFilter)
+            t.priority === priorityFilter
 
         return matchSearch && matchStatusFilter && matchPriorityFilter
     })
-
-    // funzione aggiungi task
-    function addTask() {
-        if (!newTask.trim()) return
-
-        const task = {
-            id: Date.now(),
-            title: newTask,
-            completed: false,
-            priority: "🟢 low"
-        }
-
-        setTasks(prev => [...prev, task])
-        setNewTask("")
-    }
-
-
-    // funzione toggle completamento task
-    function toggleCompleted(id) {
-        setTasks(prev => prev.map((t) => t.id === id
-            ? { ...t, completed: !t.completed } : t
-        )
-        )
-    }
-
-    // funzione rimuovi task
-    function deleteTask(id) {
-        setTasks(prev => prev.filter((t) => t.id !== id))
-    }
 
     return (
         <>
@@ -109,12 +41,6 @@ export default function Tasks() {
                 setStatusFilter={setStatusFilter}
                 priorityFilter={priorityFilter}
                 setPriorityFilter={setPriorityFilter}
-            />
-
-            <TaskForm
-                newTask={newTask}
-                setNewTask={setNewTask}
-                addTask={addTask}
             />
 
             <section className="tasks-list">
