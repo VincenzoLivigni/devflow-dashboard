@@ -210,11 +210,16 @@ header {
   width: 98%;
   background-color: var(--primary);
   color: var(--text);
-  margin-top: 10px;
+  padding: 1rem 0px 0.5rem;
   border-radius: 10px;
 }
 
-.snippet-card pre {
+.snippet-card-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+pre {
   background-color: var(--bg);
   padding: 8px;
   border: 1px solid var(--text);
