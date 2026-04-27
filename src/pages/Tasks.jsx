@@ -4,7 +4,6 @@ import TaskList from "../components/tasks/TaskList"
 import TaskFilters from "../components/tasks/TaskFilters"
 import TaskForm from "../components/tasks/TaskForm"
 
-
 export default function Tasks() {
 
     const initialTasks = [
@@ -34,7 +33,7 @@ export default function Tasks() {
         }
     ]
 
-    // localStorage
+    // localStorage tasks
     const [tasks, setTasks] = useState(() => {
         const saved = localStorage.getItem("tasks")
         return saved ? JSON.parse(saved) : initialTasks
