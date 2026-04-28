@@ -26,7 +26,7 @@ export default function Header() {
                 </div>
 
                 <div>
-                    <NavLink to="/addTask" className="fw-medium me-4">Add task</NavLink>
+                    <NavLink to="/addProject" className="fw-medium me-4">Add project</NavLink>
                     <NavLink to="/addSnippet" className="fw-medium">Add snippet</NavLink>
                 </div>
 

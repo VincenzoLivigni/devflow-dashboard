@@ -2,11 +2,18 @@ import { useContext, useState } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
 import TaskList from "../components/tasks/TaskList"
 import TaskFilters from "../components/tasks/TaskFilters"
+import { useParams } from "react-router-dom";
 
 
-export default function Tasks() {
+export default function ProjectTasks() {
 
     const { tasks, toggleCompleted, deleteTask } = useContext(GlobalContext)
+
+    const { id } = useParams()
+
+    const projectId = Number(id)
+
+    const projectTasks = tasks.filter((t) => t.projectId === projectId)
 
     // stati task
     const [search, setSearch] = useState("")
@@ -14,7 +21,7 @@ export default function Tasks() {
     const [priorityFilter, setPriorityFilter] = useState("all")
 
     // filtri task
-    const filteredTasks = tasks.filter((t) => {
+    const filteredTasks = projectTasks.filter((t) => {
         const matchSearch =
             t.title.toLowerCase().includes(search.toLowerCase())
 

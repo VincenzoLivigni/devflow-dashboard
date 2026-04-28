@@ -187,7 +187,8 @@ header a:hover {
   gap: 1rem;
 }
 
-.card {
+.card,
+.project-card {
   background-color: var(--bg);
   color: var(--text);
   text-align: center;
@@ -200,6 +201,33 @@ header a:hover {
 
 .card:hover {
   transform: translateY(-2px);
+}
+
+/* projects */
+.project-container {
+  width: 98%;
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--text);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.project-container a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.project-stats {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.project-card {
+  background-color: var(--toggle-text);
+  flex: 0 0 200px;
 }
 
 /* tasks */

@@ -21,16 +21,16 @@ export default function Sidebar() {
                     </li>
 
                     <li className="nav-item">
-                        <NavLink to={"/tasks"} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                        <NavLink to={"/projects"} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
                             <i className="bi bi-list-task"></i>
-                            <span>Tasks</span>
+                            <span>Projects</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink to={"/snippet"} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
                             <i className="bi bi-code-slash"></i>
-                            <span>Snippet</span>
+                            <span>Snippets</span>
                         </NavLink>
                     </li>
                 </ul>

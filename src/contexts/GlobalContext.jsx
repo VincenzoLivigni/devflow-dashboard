@@ -4,6 +4,16 @@ export const GlobalContext = createContext()
 
 export function GlobalProvider({ children }) {
 
+    // localStorage projects
+    const [projects, setProjects] = useState(() => {
+        const saved = localStorage.getItem("projects")
+        return saved ? JSON.parse(saved) : []
+    })
+
+    useEffect(() => {
+        localStorage.setItem("projects", JSON.stringify(projects))
+    }, [projects])
+
     // localStorage tasks
     const [tasks, setTasks] = useState(() => {
         const saved = localStorage.getItem("tasks")
@@ -24,8 +34,23 @@ export function GlobalProvider({ children }) {
         localStorage.setItem("snippets", JSON.stringify(snippets))
     }, [snippets])
 
+
+    // funzione aggiungi project
+    function addProject(title, description) {
+        if (!title.trim() || !description.trim()) return
+
+        setProjects(prev =>
+            [...prev,
+            {
+                id: Date.now(),
+                title: title.trim(),
+                description: description.trim()
+            }
+            ])
+    }
+
     // funzione aggiungi task
-    function addTask(title, priority) {
+    function addTask(title, priority, projectId) {
         if (!title.trim()) return;
 
         setTasks(prev =>
@@ -33,7 +58,8 @@ export function GlobalProvider({ children }) {
                 id: Date.now(),
                 title: title.trim(),
                 completed: false,
-                priority: priority
+                priority: priority,
+                projectId: projectId
             }
             ])
     }
@@ -78,8 +104,10 @@ export function GlobalProvider({ children }) {
 
     return (
         <GlobalContext.Provider value={{
+            projects,
             tasks,
             snippets,
+            addProject,
             addTask,
             deleteTask,
             toggleCompleted,
