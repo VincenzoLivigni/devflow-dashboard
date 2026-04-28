@@ -3,6 +3,7 @@ import { GlobalContext } from "../contexts/GlobalContext";
 import TaskList from "../components/tasks/TaskList"
 import TaskFilters from "../components/tasks/TaskFilters"
 import { useParams } from "react-router-dom";
+import AddTask from "./AddTask";
 
 
 export default function ProjectTasks() {
@@ -40,6 +41,8 @@ export default function ProjectTasks() {
     return (
         <>
             <h2 className="mt-3">Task manager</h2>
+
+            <AddTask projectId={projectId} />
 
             <TaskFilters
                 search={search}

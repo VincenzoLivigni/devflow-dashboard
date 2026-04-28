@@ -84,6 +84,12 @@ export function GlobalProvider({ children }) {
         )
     }
 
+    function modifyTask(id, title, priority) {
+        setTasks(prev => prev.map((t) => t.id === id
+            ? { ...t, title: title.trim(), priority } : t
+        ))
+    }
+
     // funzione rimuovi task
     function deleteTask(id) {
         setTasks(prev => prev.filter((t) => t.id !== id))
@@ -123,6 +129,7 @@ export function GlobalProvider({ children }) {
             modifyProject,
             deleteProject,
             addTask,
+            modifyTask,
             deleteTask,
             toggleCompleted,
             addSnippet,
