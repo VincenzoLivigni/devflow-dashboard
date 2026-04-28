@@ -253,8 +253,47 @@ header a:hover {
 }
 
 pre {
+  min-height: 100px;
+  max-height: 300px;
   background-color: var(--bg);
   padding: 8px;
   border: 1px solid var(--text);
   border-radius: 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* overlay snippet */
+.overlay-snippet {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.overlay-content {
+  width: 60%;
+  background-color: var(--primary);
+  color: var(--text);
+  padding: 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.close-overlay {
+  background-color: transparent;
+  color: var(--text);
+  border: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer
 }

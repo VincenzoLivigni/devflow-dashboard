@@ -5,7 +5,6 @@ export default function SnippetList({ snippets, deleteSnippet }) {
     return (
 
         <section>
-            <h2>Code Snippets</h2>
             {
                 snippets.length === 0 ? (
                     <div className="empty-state">

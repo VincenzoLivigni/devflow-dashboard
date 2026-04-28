@@ -64,6 +64,13 @@ export function GlobalProvider({ children }) {
             ])
     }
 
+    // funzione modifica snippet
+    function modifySnippet(id, title, newCode) {
+        setSnippets(prev => prev.map((s) => s.id === id
+            ? { ...s, title: title.trim(), code: newCode.trim() } : s
+        ))
+    }
+
     // funzione rimuovi snippet
     function deleteSnippet(id) {
         setSnippets(prev => prev.filter((s) => s.id !== id))
@@ -77,6 +84,7 @@ export function GlobalProvider({ children }) {
             deleteTask,
             toggleCompleted,
             addSnippet,
+            modifySnippet,
             deleteSnippet
         }}>
             {children}
