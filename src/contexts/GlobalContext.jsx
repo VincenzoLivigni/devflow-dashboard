@@ -49,6 +49,18 @@ export function GlobalProvider({ children }) {
             ])
     }
 
+    // funzione modifica project
+    function modifyProject(id, title, description) {
+        setProjects(prev => prev.map((p) => p.id === id
+            ? { ...p, title: title.trim(), description: description.trim() } : p
+        ))
+    }
+
+    // funzione rimuovi project
+    function deleteProject(id) {
+        setProjects(prev => prev.filter((p) => p.id !== id))
+    }
+
     // funzione aggiungi task
     function addTask(title, priority, projectId) {
         if (!title.trim()) return;
@@ -108,6 +120,8 @@ export function GlobalProvider({ children }) {
             tasks,
             snippets,
             addProject,
+            modifyProject,
+            deleteProject,
             addTask,
             deleteTask,
             toggleCompleted,
