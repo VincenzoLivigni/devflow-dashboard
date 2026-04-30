@@ -1,18 +1,12 @@
 import { createContext, useEffect, useState } from "react";
+import useStorage from "../hooks/useStorage";
 
 export const SnippetsContext = createContext()
 
 export function SnippetsProvider({ children }) {
 
     // localStorage snippet
-    const [snippets, setSnippets] = useState(() => {
-        const saved = localStorage.getItem("snippets")
-        return saved ? JSON.parse(saved) : []
-    })
-
-    useEffect(() => {
-        localStorage.setItem("snippets", JSON.stringify(snippets))
-    }, [snippets])
+    const [snippets, setSnippets] = useStorage("snippets", [])
 
     // funzione aggiungi snippet
     function addSnippet(title, code) {

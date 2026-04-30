@@ -1,18 +1,12 @@
 import { createContext, useEffect, useState } from "react";
+import useStorage from "../hooks/useStorage";
 
 export const ProjectsContext = createContext()
 
 export function ProjectsProvider({ children }) {
 
     // localStorage projects
-    const [projects, setProjects] = useState(() => {
-        const saved = localStorage.getItem("projects")
-        return saved ? JSON.parse(saved) : []
-    })
-
-    useEffect(() => {
-        localStorage.setItem("projects", JSON.stringify(projects))
-    }, [projects])
+    const [projects, setProjects] = useStorage("projects", [])
 
 
     // funzione aggiungi project

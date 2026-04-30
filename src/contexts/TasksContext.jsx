@@ -1,18 +1,12 @@
 import { createContext, useEffect, useState } from "react";
+import useStorage from "../hooks/useStorage";
 
 export const TasksContext = createContext()
 
 export function TasksProvider({ children }) {
 
     // localStorage task
-    const [tasks, setTasks] = useState(() => {
-        const saved = localStorage.getItem("tasks")
-        return saved ? JSON.parse(saved) : []
-    })
-
-    useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks))
-    }, [tasks])
+    const [tasks, setTasks] = useStorage("tasks", [])
 
     // funzione aggiungi task
     function addTask(title, priority, projectId) {
