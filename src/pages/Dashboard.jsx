@@ -1,25 +1,27 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 export default function Dashboard() {
 
-    const [tasks, setTasks] = useState([])
-    const [snippets, setSnippets] = useState([])
-
-    useEffect(() => {
-        const savedTasks = JSON.parse(localStorage.getItem("tasks")) || []
-        const savedSnippets = JSON.parse(localStorage.getItem("snippets")) || []
-
-        setTasks(savedTasks)
-        setSnippets(savedSnippets)
-    }, [])
+    const { projects, tasks, snippets } = useContext(GlobalContext)
 
     const completedTasks = tasks.filter((t) => t.completed).length
+
+    // caratteristiche secondarie
+    const completionRate = tasks.length ? Math.round((completedTasks / tasks.length) * 100) : 0;
+    const recentTasks = tasks.slice(-5).reverse()
+    const recentSnippets = snippets.slice(-5).reverse()
 
     return (
         <>
             <h2 className="mt-3">Dashboard</h2>
 
             <div className="dashboard-cards">
+                <div className="card">
+                    <h4>Projects</h4>
+                    <h5 className="mt-2">{projects.length}</h5>
+                </div>
+
                 <div className="card">
                     <h4>Tasks</h4>
                     <h5 className="mt-2">{tasks.length}</h5>
@@ -35,6 +37,47 @@ export default function Dashboard() {
                     <h5 className="mt-2">{snippets.length}</h5>
                 </div>
             </div>
+
+            <div className="separator2"></div>
+
+            <section className="secondary-features">
+                <div className="wrapper">
+                    <div className="progress-bar"
+                        style={{ background: `conic-gradient(var(--text) ${completionRate * 3.6}deg, var(--toggle-text) 0deg)` }}>
+                        <span className="percent">{completionRate}%</span>
+                    </div>
+
+                    <h5 className="mt-2">Progress bar</h5>
+                </div>
+
+                <div className="card">
+                    <h5>Recent tasks</h5>
+                    <ul>
+                        {
+                            recentTasks.length === 0 ? (
+                                <div className="empty-state">
+                                    <h6>No Projects yet</h6>
+                                </div>
+                            ) :
+                                recentTasks.map(t => <li key={t.id}>{t.title}</li>)
+                        }
+                    </ul>
+                </div>
+
+                <div className="card">
+                    <h5>Recent snippets</h5>
+                    <ul>
+                        {
+                            recentSnippets.length === 0 ? (
+                                <div className="empty-state">
+                                    <h6>No Projects yet</h6>
+                                </div>
+                            ) :
+                                recentSnippets.map(s => <li key={s.id}>{s.title}</li>)
+                        }
+                    </ul>
+                </div>
+            </section>
         </>
     )
 }
