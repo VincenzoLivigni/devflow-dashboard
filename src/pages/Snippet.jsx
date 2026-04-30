@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { SnippetsContext } from "../contexts/SnippetsContext";
 import SnippetList from "../components/snippets/SnippetList"
 
 export default function Snippet() {
 
-    const { snippets, deleteSnippet } = useContext(GlobalContext)
+    const { snippets, deleteSnippet } = useContext(SnippetsContext)
 
     return (
         <>

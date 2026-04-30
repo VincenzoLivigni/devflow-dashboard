@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { SnippetsContext } from "../contexts/SnippetsContext";
 
 export default function AddSnippet() {
 
-    const { addSnippet } = useContext(GlobalContext)
+    const { addSnippet } = useContext(SnippetsContext)
 
     const [snippetTitle, setSnippetTitle] = useState("")
     const [code, setCode] = useState("")

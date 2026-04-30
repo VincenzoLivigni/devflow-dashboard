@@ -4,7 +4,7 @@ export const TasksContext = createContext()
 
 export function TasksProvider({ children }) {
 
-    // localStorage tasks
+    // localStorage task
     const [tasks, setTasks] = useState(() => {
         const saved = localStorage.getItem("tasks")
         return saved ? JSON.parse(saved) : []

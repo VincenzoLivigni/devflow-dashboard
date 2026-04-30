@@ -1,4 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+
+import { ProjectsProvider } from "./contexts/ProjectsContext"
+import { TasksProvider } from "./contexts/TasksContext"
+import { SnippetsProvider } from "./contexts/SnippetsContext"
+
 import Dashboard from "./pages/Dashboard"
 import Projects from "./pages/Projects"
 import ProjectTasks from "./pages/ProjectTasks"
@@ -9,17 +14,14 @@ import AddTask from "./pages/AddTask"
 import AddSnippet from "./pages/AddSnippet"
 
 import DefaultLayout from "./layouts/DefaultLayout"
-import { TasksProvider } from "./contexts/TasksContext"
-import { GlobalProvider } from "./contexts/GlobalContext"
-import { ProjectsProvider } from "./contexts/ProjectsContext"
 
 function App() {
 
   return (
     <>
-      <GlobalProvider>
-        <ProjectsProvider>
-          <TasksProvider>
+      <ProjectsProvider>
+        <TasksProvider>
+          <SnippetsProvider>
             <BrowserRouter>
               <Routes>
                 <Route element={<DefaultLayout />}>
@@ -33,9 +35,9 @@ function App() {
                 </Route>
               </Routes>
             </BrowserRouter>
-          </TasksProvider>
-        </ProjectsProvider>
-      </GlobalProvider>
+          </SnippetsProvider>
+        </TasksProvider>
+      </ProjectsProvider>
     </>
   )
 }

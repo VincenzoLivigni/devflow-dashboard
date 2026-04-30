@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 
-export const GlobalContext = createContext()
+export const SnippetsContext = createContext()
 
-export function GlobalProvider({ children }) {
+export function SnippetsProvider({ children }) {
 
     // localStorage snippet
     const [snippets, setSnippets] = useState(() => {
@@ -40,13 +40,13 @@ export function GlobalProvider({ children }) {
     }
 
     return (
-        <GlobalContext.Provider value={{
+        <SnippetsContext.Provider value={{
             snippets,
             addSnippet,
             modifySnippet,
             deleteSnippet
         }}>
             {children}
-        </GlobalContext.Provider>
+        </SnippetsContext.Provider>
     )
 }

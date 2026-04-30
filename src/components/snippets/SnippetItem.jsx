@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
-import { GlobalContext } from "../../contexts/GlobalContext"
+import { SnippetsContext } from "../../contexts/SnippetsContext"
 
 export default function SnippetItem({ snippet, deleteSnippet }) {
 
-    const { modifySnippet } = useContext(GlobalContext)
+    const { modifySnippet } = useContext(SnippetsContext)
 
     // stati modifica snippet
     const [isOpen, setIsOpen] = useState(false)

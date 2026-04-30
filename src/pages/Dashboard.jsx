@@ -1,13 +1,14 @@
 import { useContext } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
-import { TasksContext } from "../contexts/TasksContext";
 import { ProjectsContext } from "../contexts/ProjectsContext";
+import { TasksContext } from "../contexts/TasksContext";
+import { SnippetsContext } from "../contexts/SnippetsContext";
 
 export default function Dashboard() {
 
-    const { snippets } = useContext(GlobalContext)
     const { projects } = useContext(ProjectsContext)
     const { tasks } = useContext(TasksContext)
+    const { snippets } = useContext(SnippetsContext)
+
     const completedTasks = tasks.filter((t) => t.completed).length
 
     // caratteristiche secondarie
