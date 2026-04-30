@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { ProjectsContext } from "../contexts/ProjectsContext";
 import { TasksContext } from "../contexts/TasksContext";
 import { SnippetsContext } from "../contexts/SnippetsContext";
@@ -9,12 +9,20 @@ export default function Dashboard() {
     const { tasks } = useContext(TasksContext)
     const { snippets } = useContext(SnippetsContext)
 
-    const completedTasks = tasks.filter((t) => t.completed).length
+    const completedTasks = useMemo(() => {
+        return tasks.filter((t) => t.completed).length
+    }, [tasks])
 
     // caratteristiche secondarie
     const completionRate = tasks.length ? Math.round((completedTasks / tasks.length) * 100) : 0;
-    const recentTasks = tasks.slice(-5).reverse()
-    const recentSnippets = snippets.slice(-5).reverse()
+
+    const recentTasks = useMemo(() => {
+        return tasks.slice(-5).reverse()
+    }, [tasks])
+
+    const recentSnippets = useMemo(() => {
+        return snippets.slice(-5).reverse()
+    }, [snippets])
 
     return (
         <>

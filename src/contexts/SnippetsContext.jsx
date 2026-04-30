@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import useStorage from "../hooks/useStorage";
 
 export const SnippetsContext = createContext()
@@ -9,7 +9,7 @@ export function SnippetsProvider({ children }) {
     const [snippets, setSnippets] = useStorage("snippets", [])
 
     // funzione aggiungi snippet
-    function addSnippet(title, code) {
+    const addSnippet = useCallback((title, code) => {
         if (!title.trim()) return;
 
         setSnippets(prev =>
@@ -19,19 +19,19 @@ export function SnippetsProvider({ children }) {
                 code: code.trim()
             }
             ])
-    }
+    }, [])
 
     // funzione modifica snippet
-    function modifySnippet(id, title, newCode) {
+    const modifySnippet = useCallback((id, title, newCode) => {
         setSnippets(prev => prev.map((s) => s.id === id
             ? { ...s, title: title.trim(), code: newCode.trim() } : s
         ))
-    }
+    }, [])
 
     // funzione rimuovi snippet
-    function deleteSnippet(id) {
+    const deleteSnippet = useCallback((id) => {
         setSnippets(prev => prev.filter((s) => s.id !== id))
-    }
+    }, [])
 
     return (
         <SnippetsContext.Provider value={{

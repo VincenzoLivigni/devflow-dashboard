@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { TasksContext } from "../contexts/TasksContext";
 import AddTask from "./AddTask";
 import TaskList from "../components/tasks/TaskList"
@@ -22,21 +22,24 @@ export default function ProjectTasks() {
     const [priorityFilter, setPriorityFilter] = useState("all")
 
     // filtri task
-    const filteredTasks = projectTasks.filter((t) => {
-        const matchSearch =
-            t.title.toLowerCase().includes(search.toLowerCase())
+    const filteredTasks = useMemo(() => {
+        return projectTasks.filter((t) => {
 
-        const matchStatusFilter =
-            statusFilter === "all" ||
-            (statusFilter === "active" && !t.completed) ||
-            (statusFilter === "completed" && t.completed)
+            const matchSearch =
+                t.title.toLowerCase().includes(search.toLowerCase())
 
-        const matchPriorityFilter =
-            priorityFilter === "all" ||
-            t.priority === priorityFilter
+            const matchStatusFilter =
+                statusFilter === "all" ||
+                (statusFilter === "active" && !t.completed) ||
+                (statusFilter === "completed" && t.completed)
 
-        return matchSearch && matchStatusFilter && matchPriorityFilter
-    })
+            const matchPriorityFilter =
+                priorityFilter === "all" ||
+                t.priority === priorityFilter
+
+            return matchSearch && matchStatusFilter && matchPriorityFilter
+        })
+    }, [projectTasks, search, statusFilter, priorityFilter])
 
     return (
         <>

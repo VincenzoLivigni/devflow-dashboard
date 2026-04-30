@@ -1,9 +1,9 @@
-import { useContext, useState } from "react"
+import { memo, useContext, useMemo, useState } from "react"
 import { Link } from "react-router-dom"
 import { TasksContext } from "../../contexts/TasksContext"
 import { ProjectsContext } from "../../contexts/ProjectsContext"
 
-export default function ProjectItem({ project }) {
+function ProjectItem({ project }) {
 
     const { modifyProject, deleteProject } = useContext(ProjectsContext)
     const { tasks } = useContext(TasksContext)
@@ -12,8 +12,13 @@ export default function ProjectItem({ project }) {
     const [modifyTitle, setModifyTitle] = useState(project.title)
     const [modifyDescription, setModifyDescription] = useState(project.description)
 
-    const projectTasks = tasks.filter(t => t.projectId === project.id)
-    const completedTasks = projectTasks.filter(t => t.completed).length
+    const projectTasks = useMemo(() => {
+        return tasks.filter(t => t.projectId === project.id)
+    }, [tasks])
+
+    const completedTasks = useMemo(() => {
+        return projectTasks.filter(t => t.completed).length
+    }, [projectTasks])
 
     // funzione modifica project
     function handleSave() {
@@ -88,3 +93,5 @@ export default function ProjectItem({ project }) {
         </>
     )
 }
+
+export default memo(ProjectItem)

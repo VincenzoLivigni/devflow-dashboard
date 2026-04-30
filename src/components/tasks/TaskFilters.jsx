@@ -1,4 +1,21 @@
-export default function TaskFilters({ search, setSearch, statusFilter, setStatusFilter, priorityFilter, setPriorityFilter }) {
+import { useCallback } from "react";
+
+function debounce(callback, delay) {
+    let timer;
+
+    return (value) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            callback(value)
+        }, delay)
+    }
+}
+
+export default function TaskFilters({ setSearch, statusFilter, setStatusFilter, priorityFilter, setPriorityFilter }) {
+
+    const debounceSetSearch = useCallback(
+        debounce(setSearch, 400)
+        , [setSearch])
 
     return (
         <>
@@ -11,8 +28,7 @@ export default function TaskFilters({ search, setSearch, statusFilter, setStatus
                         className="input"
                         type="text"
                         placeholder="Search..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
+                        onChange={(e) => debounceSetSearch(e.target.value)}
                     />
                 </div>
 

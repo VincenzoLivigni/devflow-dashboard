@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import { memo, useContext, useState } from "react";
 import { TasksContext } from "../../contexts/TasksContext";
 
-export default function TaskItem({ task, toggleCompleted, deleteTask }) {
+function TaskItem({ task, toggleCompleted, deleteTask }) {
 
     const { modifyTask } = useContext(TasksContext)
 
@@ -75,3 +75,5 @@ export default function TaskItem({ task, toggleCompleted, deleteTask }) {
         </>
     )
 }
+
+export default memo(TaskItem)

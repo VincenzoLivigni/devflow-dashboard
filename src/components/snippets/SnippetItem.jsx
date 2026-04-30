@@ -1,7 +1,7 @@
-import { useContext, useState } from "react"
+import { memo, useContext, useState } from "react"
 import { SnippetsContext } from "../../contexts/SnippetsContext"
 
-export default function SnippetItem({ snippet, deleteSnippet }) {
+function SnippetItem({ snippet, deleteSnippet }) {
 
     const { modifySnippet } = useContext(SnippetsContext)
 
@@ -72,3 +72,5 @@ export default function SnippetItem({ snippet, deleteSnippet }) {
         </>
     )
 }
+
+export default memo(SnippetItem)
