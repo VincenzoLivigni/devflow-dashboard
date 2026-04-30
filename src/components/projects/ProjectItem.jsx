@@ -1,10 +1,12 @@
 import { useContext, useState } from "react"
 import { GlobalContext } from "../../contexts/GlobalContext"
 import { Link } from "react-router-dom"
+import { TasksContext } from "../../contexts/TasksContext"
 
-export default function ProjectItem({ project, tasks }) {
+export default function ProjectItem({ project }) {
 
     const { modifyProject, deleteProject } = useContext(GlobalContext)
+    const { tasks } = useContext(TasksContext)
 
     const [isOpen, setIsOpen] = useState(false)
     const [modifyTitle, setModifyTitle] = useState(project.title)

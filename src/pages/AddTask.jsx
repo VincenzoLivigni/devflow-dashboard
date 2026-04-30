@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { TasksContext } from "../contexts/TasksContext";
 
 export default function AddTask({ projectId }) {
 
-    const { addTask } = useContext(GlobalContext)
+    const { addTask } = useContext(TasksContext)
 
     const [taskTitle, setTaskTitle] = useState("")
     const [priority, setPriority] = useState("low")

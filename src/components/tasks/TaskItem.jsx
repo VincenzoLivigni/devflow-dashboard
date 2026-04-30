@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../../contexts/GlobalContext";
+import { TasksContext } from "../../contexts/TasksContext";
 
 export default function TaskItem({ task, toggleCompleted, deleteTask }) {
 
-    const { modifyTask } = useContext(GlobalContext)
+    const { modifyTask } = useContext(TasksContext)
 
     const [isOpen, setIsOpen] = useState(false)
     const [modifyTitle, setModifyTitle] = useState(task.title)

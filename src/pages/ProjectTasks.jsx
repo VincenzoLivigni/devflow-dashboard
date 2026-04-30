@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../contexts/GlobalContext";
+import { TasksContext } from "../contexts/TasksContext";
+import AddTask from "./AddTask";
 import TaskList from "../components/tasks/TaskList"
 import TaskFilters from "../components/tasks/TaskFilters"
 import { useParams } from "react-router-dom";
-import AddTask from "./AddTask";
 
 
 export default function ProjectTasks() {
 
-    const { tasks, toggleCompleted, deleteTask } = useContext(GlobalContext)
+    const { tasks, toggleCompleted, deleteTask } = useContext(TasksContext)
 
     const { id } = useParams()
 

@@ -14,15 +14,6 @@ export function GlobalProvider({ children }) {
         localStorage.setItem("projects", JSON.stringify(projects))
     }, [projects])
 
-    // localStorage tasks
-    const [tasks, setTasks] = useState(() => {
-        const saved = localStorage.getItem("tasks")
-        return saved ? JSON.parse(saved) : []
-    })
-
-    useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks))
-    }, [tasks])
 
     // localStorage snippet
     const [snippets, setSnippets] = useState(() => {
@@ -61,40 +52,6 @@ export function GlobalProvider({ children }) {
         setProjects(prev => prev.filter((p) => p.id !== id))
     }
 
-    // funzione aggiungi task
-    function addTask(title, priority, projectId) {
-        if (!title.trim()) return;
-
-        setTasks(prev =>
-            [...prev, {
-                id: Date.now(),
-                title: title.trim(),
-                completed: false,
-                priority: priority,
-                projectId: projectId
-            }
-            ])
-    }
-
-    // funzione toggle completamento task
-    function toggleCompleted(id) {
-        setTasks(prev => prev.map((t) => t.id === id
-            ? { ...t, completed: !t.completed } : t
-        )
-        )
-    }
-
-    function modifyTask(id, title, priority) {
-        setTasks(prev => prev.map((t) => t.id === id
-            ? { ...t, title: title.trim(), priority } : t
-        ))
-    }
-
-    // funzione rimuovi task
-    function deleteTask(id) {
-        setTasks(prev => prev.filter((t) => t.id !== id))
-    }
-
     // funzione aggiungi snippet
     function addSnippet(title, code) {
         if (!title.trim()) return;
@@ -123,15 +80,10 @@ export function GlobalProvider({ children }) {
     return (
         <GlobalContext.Provider value={{
             projects,
-            tasks,
             snippets,
             addProject,
             modifyProject,
             deleteProject,
-            addTask,
-            modifyTask,
-            deleteTask,
-            toggleCompleted,
             addSnippet,
             modifySnippet,
             deleteSnippet
