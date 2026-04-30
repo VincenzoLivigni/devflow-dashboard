@@ -11,27 +11,30 @@ import AddSnippet from "./pages/AddSnippet"
 import DefaultLayout from "./layouts/DefaultLayout"
 import { TasksProvider } from "./contexts/TasksContext"
 import { GlobalProvider } from "./contexts/GlobalContext"
+import { ProjectsProvider } from "./contexts/ProjectsContext"
 
 function App() {
 
   return (
     <>
       <GlobalProvider>
-        <TasksProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route element={<DefaultLayout />}>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/projects/:id" element={<ProjectTasks />} />
-                <Route path="/addProject" element={<AddProject />} />
-                <Route path="/addTask" element={<AddTask />} />
-                <Route path="/Snippet" element={<Snippet />} />
-                <Route path="/addSnippet" element={<AddSnippet />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </TasksProvider>
+        <ProjectsProvider>
+          <TasksProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route element={<DefaultLayout />}>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/projects/:id" element={<ProjectTasks />} />
+                  <Route path="/addProject" element={<AddProject />} />
+                  <Route path="/addTask" element={<AddTask />} />
+                  <Route path="/Snippet" element={<Snippet />} />
+                  <Route path="/addSnippet" element={<AddSnippet />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </TasksProvider>
+        </ProjectsProvider>
       </GlobalProvider>
     </>
   )

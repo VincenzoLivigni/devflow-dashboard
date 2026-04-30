@@ -1,9 +1,9 @@
 import { useContext, useState } from "react"
-import { GlobalContext } from "../contexts/GlobalContext"
+import { ProjectsContext } from "../contexts/ProjectsContext"
 
 export default function AddProject() {
 
-    const { addProject } = useContext(GlobalContext)
+    const { addProject } = useContext(ProjectsContext)
 
     const [projectTitle, setProjectTitle] = useState("")
     const [projectDescription, setProjectDescription] = useState("")

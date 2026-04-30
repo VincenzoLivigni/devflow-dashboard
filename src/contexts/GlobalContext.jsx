@@ -4,17 +4,6 @@ export const GlobalContext = createContext()
 
 export function GlobalProvider({ children }) {
 
-    // localStorage projects
-    const [projects, setProjects] = useState(() => {
-        const saved = localStorage.getItem("projects")
-        return saved ? JSON.parse(saved) : []
-    })
-
-    useEffect(() => {
-        localStorage.setItem("projects", JSON.stringify(projects))
-    }, [projects])
-
-
     // localStorage snippet
     const [snippets, setSnippets] = useState(() => {
         const saved = localStorage.getItem("snippets")
@@ -24,33 +13,6 @@ export function GlobalProvider({ children }) {
     useEffect(() => {
         localStorage.setItem("snippets", JSON.stringify(snippets))
     }, [snippets])
-
-
-    // funzione aggiungi project
-    function addProject(title, description) {
-        if (!title.trim() || !description.trim()) return
-
-        setProjects(prev =>
-            [...prev,
-            {
-                id: Date.now(),
-                title: title.trim(),
-                description: description.trim()
-            }
-            ])
-    }
-
-    // funzione modifica project
-    function modifyProject(id, title, description) {
-        setProjects(prev => prev.map((p) => p.id === id
-            ? { ...p, title: title.trim(), description: description.trim() } : p
-        ))
-    }
-
-    // funzione rimuovi project
-    function deleteProject(id) {
-        setProjects(prev => prev.filter((p) => p.id !== id))
-    }
 
     // funzione aggiungi snippet
     function addSnippet(title, code) {
@@ -79,11 +41,7 @@ export function GlobalProvider({ children }) {
 
     return (
         <GlobalContext.Provider value={{
-            projects,
             snippets,
-            addProject,
-            modifyProject,
-            deleteProject,
             addSnippet,
             modifySnippet,
             deleteSnippet
