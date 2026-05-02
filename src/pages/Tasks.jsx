@@ -6,7 +6,7 @@ import TaskFilters from "../components/tasks/TaskFilters"
 import { useParams } from "react-router-dom";
 
 
-export default function ProjectTasks() {
+export default function Tasks() {
 
     const { tasks, toggleCompleted, deleteTask } = useContext(TasksContext)
 

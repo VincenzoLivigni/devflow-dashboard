@@ -6,8 +6,8 @@ import { SnippetsProvider } from "./contexts/SnippetsContext"
 
 import Dashboard from "./pages/Dashboard"
 import Projects from "./pages/Projects"
-import ProjectTasks from "./pages/ProjectTasks"
-import Snippet from "./pages/Snippet"
+import Tasks from "./pages/Tasks"
+import Snippets from "./pages/Snippets"
 
 import AddProject from "./pages/AddProject"
 import AddTask from "./pages/AddTask"
@@ -27,10 +27,10 @@ function App() {
                 <Route element={<DefaultLayout />}>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/projects" element={<Projects />} />
-                  <Route path="/projects/:id" element={<ProjectTasks />} />
+                  <Route path="/projects/:id" element={<Tasks />} />
                   <Route path="/addProject" element={<AddProject />} />
                   <Route path="/addTask" element={<AddTask />} />
-                  <Route path="/Snippet" element={<Snippet />} />
+                  <Route path="/snippets" element={<Snippets />} />
                   <Route path="/addSnippet" element={<AddSnippet />} />
                 </Route>
               </Routes>

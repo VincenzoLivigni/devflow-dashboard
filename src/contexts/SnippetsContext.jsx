@@ -19,19 +19,19 @@ export function SnippetsProvider({ children }) {
                 code: code.trim()
             }
             ])
-    }, [])
+    }, [setSnippets])
 
     // funzione modifica snippet
     const modifySnippet = useCallback((id, title, newCode) => {
         setSnippets(prev => prev.map((s) => s.id === id
             ? { ...s, title: title.trim(), code: newCode.trim() } : s
         ))
-    }, [])
+    }, [setSnippets])
 
     // funzione rimuovi snippet
     const deleteSnippet = useCallback((id) => {
         setSnippets(prev => prev.filter((s) => s.id !== id))
-    }, [])
+    }, [setSnippets])
 
     return (
         <SnippetsContext.Provider value={{

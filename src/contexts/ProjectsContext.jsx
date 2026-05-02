@@ -21,19 +21,19 @@ export function ProjectsProvider({ children }) {
                 description: description.trim()
             }
             ])
-    }, [])
+    }, [setProjects])
 
     // funzione modifica project
     const modifyProject = useCallback((id, title, description) => {
         setProjects(prev => prev.map((p) => p.id === id
             ? { ...p, title: title.trim(), description: description.trim() } : p
         ))
-    }, [])
+    }, [setProjects])
 
     // funzione rimuovi project
     const deleteProject = useCallback((id) => {
         setProjects(prev => prev.filter((p) => p.id !== id))
-    }, [])
+    }, [setProjects])
 
     return (
         <ProjectsContext.Provider value={{

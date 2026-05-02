@@ -21,7 +21,7 @@ export function TasksProvider({ children }) {
                 projectId: projectId
             }
             ])
-    }, [])
+    }, [setTasks])
 
     // funzione toggle completamento task
     const toggleCompleted = useCallback((id) => {
@@ -29,19 +29,19 @@ export function TasksProvider({ children }) {
             ? { ...t, completed: !t.completed } : t
         )
         )
-    }, [])
+    }, [setTasks])
 
     // funzione modifica task
     const modifyTask = useCallback((id, title, priority) => {
         setTasks(prev => prev.map((t) => t.id === id
             ? { ...t, title: title.trim(), priority } : t
         ))
-    }, [])
+    }, [setTasks])
 
     // funzione rimuovi task
     const deleteTask = useCallback((id) => {
         setTasks(prev => prev.filter((t) => t.id !== id))
-    }, [])
+    }, [setTasks])
 
     return (
         <TasksContext.Provider value={{

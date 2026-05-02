@@ -16,13 +16,9 @@ export default function Dashboard() {
     // caratteristiche secondarie
     const completionRate = tasks.length ? Math.round((completedTasks / tasks.length) * 100) : 0;
 
-    const recentTasks = useMemo(() => {
-        return tasks.slice(-5).reverse()
-    }, [tasks])
+    const recentTasks = tasks.slice(-5).reverse()
 
-    const recentSnippets = useMemo(() => {
-        return snippets.slice(-5).reverse()
-    }, [snippets])
+    const recentSnippets = snippets.slice(-5).reverse()
 
     return (
         <>
@@ -68,7 +64,7 @@ export default function Dashboard() {
                         {
                             recentTasks.length === 0 ? (
                                 <div className="empty-state">
-                                    <h6>No Projects yet</h6>
+                                    <h6>No Tasks yet</h6>
                                 </div>
                             ) :
                                 recentTasks.map(t => <li key={t.id}>{t.title}</li>)
@@ -82,7 +78,7 @@ export default function Dashboard() {
                         {
                             recentSnippets.length === 0 ? (
                                 <div className="empty-state">
-                                    <h6>No Projects yet</h6>
+                                    <h6>No Snippets yet</h6>
                                 </div>
                             ) :
                                 recentSnippets.map(s => <li key={s.id}>{s.title}</li>)

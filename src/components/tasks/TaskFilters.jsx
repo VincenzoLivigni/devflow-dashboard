@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useMemo } from "react";
 
 function debounce(callback, delay) {
     let timer;
@@ -13,7 +13,7 @@ function debounce(callback, delay) {
 
 export default function TaskFilters({ setSearch, statusFilter, setStatusFilter, priorityFilter, setPriorityFilter }) {
 
-    const debounceSetSearch = useCallback(
+    const debounceSetSearch = useMemo(() =>
         debounce(setSearch, 400)
         , [setSearch])
 
