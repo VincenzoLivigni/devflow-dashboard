@@ -2,13 +2,15 @@ import { memo, useContext, useMemo, useState } from "react"
 import { Link } from "react-router-dom"
 import { TasksContext } from "../../contexts/TasksContext"
 import { ProjectsContext } from "../../contexts/ProjectsContext"
+import useOverlay from "../../hooks/useOverlay"
+import Overlay from "../Overlay"
 
 function ProjectItem({ project }) {
 
     const { modifyProject, deleteProject } = useContext(ProjectsContext)
     const { tasks } = useContext(TasksContext)
 
-    const [isOpen, setIsOpen] = useState(false)
+    const { isOpen, open, close } = useOverlay()
     const [modifyTitle, setModifyTitle] = useState(project.title)
     const [modifyDescription, setModifyDescription] = useState(project.description)
 
@@ -25,7 +27,7 @@ function ProjectItem({ project }) {
         if (!modifyTitle.trim() || !modifyDescription.trim()) return
 
         modifyProject(project.id, modifyTitle, modifyDescription)
-        setIsOpen(false)
+        close()
     }
 
     return (
@@ -37,7 +39,7 @@ function ProjectItem({ project }) {
                     </Link>
 
                     <div>
-                        <button className="btn primary me-2" onClick={() => setIsOpen(true)}>Edit</button>
+                        <button className="btn primary me-2" onClick={open}>Edit</button>
                         <button className="btn primary" onClick={() => deleteProject(project.id)}>Delete</button>
                     </div>
                 </div>
@@ -60,34 +62,23 @@ function ProjectItem({ project }) {
 
             {
                 isOpen && (
-                    <div className="overlay-project">
-                        <div className="overlay-content">
-                            <h3>Edit Project</h3>
+                    <Overlay
+                        title="Edit project"
+                        close={close}
+                        save={handleSave}>
 
-                            <button className="close-overlay" onClick={() => setIsOpen(false)}>
-                                <i className="bi bi-x fs-5"></i>
-                            </button>
+                        <label className="fw-medium mt-3 mb-1">Edit title</label>
+                        <input
+                            className="input-project w-100"
+                            value={modifyTitle}
+                            onChange={(e) => setModifyTitle(e.target.value)} />
 
-                            <label className="fw-medium mt-3 mb-1">Edit title</label>
-                            <input
-                                className="input-project w-100"
-                                value={modifyTitle}
-                                onChange={(e) => setModifyTitle(e.target.value)}
-                            />
-
-                            <label className="fw-medium mt-3 mb-1">Edit description</label>
-                            <textarea
-                                className="textarea-project w-100"
-                                value={modifyDescription}
-                                onChange={(e) => setModifyDescription(e.target.value)}
-                            />
-
-                            <div className="mt-3">
-                                <button className="btn primary me-2" onClick={handleSave}>Save</button>
-                                <button className="btn primary" onClick={() => setIsOpen(false)}>Cancel</button>
-                            </div>
-                        </div>
-                    </div>
+                        <label className="fw-medium mt-3 mb-1">Edit description</label>
+                        <textarea
+                            className="textarea-project w-100"
+                            value={modifyDescription}
+                            onChange={(e) => setModifyDescription(e.target.value)} />
+                    </Overlay>
                 )
             }
         </>
