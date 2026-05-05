@@ -9,7 +9,7 @@ export default function Projects() {
     const { tasks } = useContext(TasksContext)
     return (
         <>
-            <h2 className="mt-3">Projects</h2>
+            <h2 className="mt-3 mb-3">Projects</h2>
 
             <ProjectList
                 projects={projects}

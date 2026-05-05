@@ -20,19 +20,28 @@ export default function Header() {
                     <input
                         className="input me-1"
                         type="text"
-                        placeholder="Cerca..."
+                        placeholder="Search..."
                     />
-                    <button className="btn secondary fw-medium">Cerca</button>
+                    <button className="btn secondary fw-medium">Search</button>
                 </div>
 
                 <div>
-                    <NavLink to="/addProject" className="fw-medium me-4">Add project</NavLink>
-                    <NavLink to="/addSnippet" className="fw-medium">Add snippet</NavLink>
+                    <NavLink to="/addProject" className={({ isActive }) =>
+                        isActive ? "header-link active fw-medium me-4" : "header-link fw-medium me-4"}>
+                        Add project
+                    </NavLink>
+
+                    <NavLink
+                        to="/addSnippet"
+                        className={({ isActive }) =>
+                            isActive ? "header-link active fw-medium" : "header-link fw-medium"}>
+                        Add snippet
+                    </NavLink>
                 </div>
 
                 <div className="d-flex align-items-center">
                     <span className="fw-medium">
-                        {theme === "dark" ? "Tema chiaro" : "Tema scuro"}
+                        {theme === "dark" ? "Light theme" : "Dark theme"}
                     </span>
 
                     <button className="tema" onClick={toggleTheme}>

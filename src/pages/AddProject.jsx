@@ -21,13 +21,13 @@ export default function AddProject() {
 
     return (
         <>
-            <h3>Add Project</h3>
+            <h2 className="mt-3">Add project</h2>
 
             <form className="task-form" onSubmit={handleSubmit}>
 
-                <label className="fw-medium mt-3 mb-1">Add project</label>
+                <label className="fw-medium mt-3 mb-1">Add title</label>
                 <input
-                    className="input-snippet mb-3"
+                    className="input-project mb-3"
                     type="text"
                     placeholder="add title"
                     value={projectTitle}

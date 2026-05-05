@@ -27,12 +27,12 @@ function TaskItem({ task, toggleCompleted, deleteTask }) {
     return (
         <>
             <li className="task-item">
-                <div className="task-left" onClick={() => toggleCompleted(task.id)}>
+                <div className="task-item-left" onClick={() => toggleCompleted(task.id)}>
                     <span className="me-2">{task.completed ? "✅" : "❌"}</span>
                     <strong className="me-2">{task.title}</strong>
                 </div>
 
-                <div className="task-right">
+                <div className="task-item-right">
                     <small className="me-3">{choosePriority[task.priority]}</small>
                     <button className=" btn secondary me-2" onClick={open}>Edit</button>
                     <button className="btn secondary" onClick={() => deleteTask(task.id)}>Delete</button>

@@ -19,9 +19,9 @@ export default function TaskFilters({ setSearch, statusFilter, setStatusFilter, 
 
     return (
         <>
-            <div className="separator2"></div>
+            <div className="divider2"></div>
             <h4>Filter Tasks</h4>
-            <section className="top">
+            <section className="task-filters">
                 <div>
                     <span className="d-flex fw-medium">Search tasks</span>
                     <input
@@ -60,7 +60,7 @@ export default function TaskFilters({ setSearch, statusFilter, setStatusFilter, 
                 </div>
             </section>
 
-            <div className="separator2"></div>
+            <div className="divider2"></div>
         </>
     )
 }

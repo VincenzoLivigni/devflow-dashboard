@@ -21,7 +21,7 @@ export default function AddSnippet() {
 
     return (
         <>
-            <h2 className="mt-3">Add new snippet</h2>
+            <h2 className="mt-3">Add snippet</h2>
 
             <form onSubmit={handleSubmit} className="form-snippet">
                 <label className="fw-medium mt-3 mb-1">Add title</label>

@@ -46,11 +46,11 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            <div className="separator2"></div>
+            <div className="divider2"></div>
 
             <section className="secondary-features">
-                <div className="wrapper">
-                    <div className="progress-bar"
+                <div className="progress-wrapper">
+                    <div className="circular-progress"
                         style={{ background: `conic-gradient(var(--text) ${completionRate * 3.6}deg, var(--toggle-text) 0deg)` }}>
                         <span className="percent">{completionRate}%</span>
                     </div>

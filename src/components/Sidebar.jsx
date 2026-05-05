@@ -10,7 +10,7 @@ export default function Sidebar() {
                     <i id="logo" className="bi bi-explicit"></i>
                 </div>
 
-                <div className="separator"></div>
+                <div className="divider"></div>
 
                 <ul className="list-unstyled">
                     <li className="nav-item">
