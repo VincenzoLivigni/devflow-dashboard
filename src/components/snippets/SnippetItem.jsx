@@ -25,11 +25,10 @@ function SnippetItem({ snippet, deleteSnippet }) {
         <>
             <div className="snippet-card">
                 <div className="snippet-card-top">
-                    <div>
-                        <h4>{snippet.title}</h4>
-                    </div>
+                    <h4>{snippet.title}</h4>
 
-                    <div>
+
+                    <div className="s-item-btn">
                         <button className="btn primary me-2" onClick={open}>Edit</button>
                         <button className="btn primary" onClick={() => deleteSnippet(snippet.id)}>Delete</button>
                     </div>
@@ -45,6 +44,7 @@ function SnippetItem({ snippet, deleteSnippet }) {
                         close={close}
                         save={handleSave}>
 
+                        <label className="fw-medium mt-3 mb-1">Edit title</label>
                         <input
                             className="input-snippet w-100"
                             value={modifyTitle}

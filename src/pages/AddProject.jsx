@@ -23,7 +23,7 @@ export default function AddProject() {
         <>
             <h2 className="mt-3">Add project</h2>
 
-            <form className="task-form" onSubmit={handleSubmit}>
+            <form className="form-project" onSubmit={handleSubmit}>
 
                 <label className="fw-medium mt-3 mb-1">Add title</label>
                 <input

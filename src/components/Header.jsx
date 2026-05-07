@@ -16,7 +16,7 @@ export default function Header() {
     return (
         <>
             <header>
-                <div className="d-flex">
+                <div className="header-left d-flex">
                     <input
                         className="input me-1"
                         type="text"
@@ -25,7 +25,7 @@ export default function Header() {
                     <button className="btn secondary fw-medium">Search</button>
                 </div>
 
-                <div>
+                <div className="header-actions">
                     <NavLink to="/addProject" className={({ isActive }) =>
                         isActive ? "header-link active fw-medium me-4" : "header-link fw-medium me-4"}>
                         Add project
@@ -39,7 +39,7 @@ export default function Header() {
                     </NavLink>
                 </div>
 
-                <div className="d-flex align-items-center">
+                <div className="theme d-flex align-items-center">
                     <span className="fw-medium">
                         {theme === "dark" ? "Light theme" : "Dark theme"}
                     </span>

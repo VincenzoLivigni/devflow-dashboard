@@ -1,6 +1,10 @@
 @import url(bootstrap);
 @import url(bootstrap-icons);
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   /* Light mode */
   --primary: #F2ECE4;
@@ -287,6 +291,17 @@ header {
   justify-content: space-between;
 }
 
+.task-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.task-form input,
+.task-form select {
+  background-color: var(--primary);
+}
+
 .add-task {
   width: 98%;
   background-color: var(--bg);
@@ -296,11 +311,12 @@ header {
   margin: 1rem 0;
 }
 
-.task-form {
+.form-project {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   flex-wrap: wrap;
+  padding-bottom: 1.5rem;
 }
 
 .task-item {
@@ -329,6 +345,7 @@ header {
 .form-snippet {
   display: flex;
   flex-direction: column;
+  padding-bottom: 1.5rem;
 }
 
 .snippet-card {
@@ -377,4 +394,152 @@ header {
   top: 5px;
   right: 5px;
   cursor: pointer
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 992px) {
+
+  .app-layout {
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+  }
+
+  #logo {
+    font-size: 3rem;
+  }
+
+  .nav-link,
+  .divider {
+    width: 90%;
+  }
+
+  .theme {
+    justify-content: end;
+  }
+
+  .main-area {
+    border-radius: 0 0 10px 10px;
+  }
+
+  .dashboard-cards,
+  .secondary-features {
+    flex-wrap: wrap;
+  }
+
+  .card,
+  .project-card {
+    flex: 1 1 45%;
+  }
+
+  header {
+    width: 98%;
+    margin: 0 auto;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .content {
+    width: 98%;
+    margin: 0 auto;
+  }
+
+  .card,
+  .project-card {
+    flex: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  header {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .header-left {
+    width: 100%;
+    display: flex;
+  }
+
+  .header-left input {
+    flex: 1;
+  }
+
+  .header-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .header-link {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .theme {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .dashboard-cards,
+  .secondary-features {
+    flex-direction: column;
+  }
+
+  .progress-wrapper {
+    padding-top: 1rem;
+  }
+
+  .task-filters {
+    gap: 1rem;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .overlay-content {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .overlay-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  pre {
+    font-size: 0.8rem;
+  }
+
+  .task-filters,
+  .task-form {
+    flex-direction: column;
+  }
+
+  .task-form {
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .task-form>div,
+  .task-form input,
+  .task-form select,
+  .task-filters input,
+  .task-filters select {
+    width: 100%;
+  }
 }

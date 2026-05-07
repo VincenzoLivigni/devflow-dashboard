@@ -48,7 +48,7 @@ export default function Dashboard() {
 
             <div className="divider2"></div>
 
-            <section className="secondary-features">
+            <section className="secondary-features pb-4">
                 <div className="progress-wrapper">
                     <div className="circular-progress"
                         style={{ background: `conic-gradient(var(--text) ${completionRate * 3.6}deg, var(--toggle-text) 0deg)` }}>

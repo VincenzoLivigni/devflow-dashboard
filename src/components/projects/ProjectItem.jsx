@@ -38,7 +38,7 @@ function ProjectItem({ project }) {
                         <h4>{project.title}</h4>
                     </Link>
 
-                    <div>
+                    <div className="p-item-btn">
                         <button className="btn primary me-2" onClick={open}>Edit</button>
                         <button className="btn primary" onClick={() => deleteProject(project.id)}>Delete</button>
                     </div>
